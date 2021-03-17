@@ -1,6 +1,4 @@
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
@@ -17,7 +15,7 @@ DATASET = "./data/dataset_utente_3.txt"
 RISULTATI_UTENTE = "./data/risultati_utente_3.txt"
 
 data = pd.read_csv(DATASET,header=None)
-features = data.drop(columns={12})
+features = data
 labels = data[12]
 
 preprocessor = Pipeline(
@@ -72,11 +70,5 @@ consigli = libri[libri.index.isin(cluster_max.index)]
 consigli = consigli.join(result)
 consigli = consigli[consigli[12] == 0]
 
-#consigli.ISBN.to_csv(RISULTATI_UTENTE, header=None)
+consigli.ISBN.to_csv(RISULTATI_UTENTE, header=None)
 print(consigli.Titolo)
-
-
-
-
-
-
